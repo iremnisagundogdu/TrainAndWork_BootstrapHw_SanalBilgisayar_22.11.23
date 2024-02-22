@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Virtual Machine</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+</style>
+  <body>
+   
+
+  <nav class="navbar navbar-expand-lg bg-dark fixed-bottom" style="height: 48px;" data-bs-theme="dark">
+        <div class="container-fluid">
+            <div class="dropup">
+                <div class="icon">
+                     <i class="fa-solid fa-cloud-bolt me-xxl-5 mx-3" style="color: #ffffff;" > &nbsp; 13 C°</i>
+                     <img src="images/havadurumu.png" class="image">
+                </div>
+                <button role="button" type="button" class="btn dropdown" data-bs-toggle="dropdown"> 
+                    <i class="fa-brands fa-windows mx-2" style="color: #ffffff;"></i>
+                </button>
+                  <ul class="dropdown-menu ps-3 pb-3 p-5">
+                    <li><a class="dropdown-item" href="#" data-bs-target="#modaldivuygulamalar" data-bs-toggle="modal"> <i class="fas fa-folder-open"></i> Uygulamalar</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-target="#modaldivresimler" data-bs-toggle="modal"> <i class="fas fa-images"></i></i> Resimler</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-target="#modaldivbelgeler" data-bs-toggle="modal"> <i class="fas fa-folder-open"></i> Belgeler</a></li>
+                    <li><a class="dropdown-item" href="#" data-bs-target="#modaldivbilgisayar" data-bs-toggle="modal"> <i class="fas fa-desktop"></i> Bilgisayar</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <button onclick="kapa()">
+                    <li><a class="dropdown-item" href="#"> <i class="fas fa-power-off"></i> Bilgisayarı Kapat</a></li>
+                  </button>
+                  </ul>
+            </div>
+            <form class="d-flex" role="search">
+                <input class="form-control mx-0  rounded-5" type="search" placeholder="Ara" aria-label="Search">
+            </form>
+
+        <br>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination mx-5" style="height:22px;">
+                  <li class="page-item "><a class="page-link me-3" href="#"><img src="images/Google_Chrome_icon_(February_2022).svg.png" style="width: 25px; height: 25px;"></a></li>
+                  <li class="page-item"><a class="page-link me-3 " href="#"><img src="images/discord.png" style="width: 25px; height: 25px;"></a></li>
+                  <li class="page-item"><a class="page-link me-3" href="#"><img src="images/whatsapp.png" style="width: 25px; height: 25px;"></a></li>
+                  <li class="page-item"><a class="page-link me-3" href="#"><img src="images/github.png" style="width: 25px; height: 25px;"></a></li>
+                  <li class="page-item"><a class="page-link me-3" href="powerpoint.html"><img src="images/PowerPoint.png" style="width: 30px; height: 25px;"></a></li>
+                  <li class="page-item"><a class="page-link me-3" href="excel.html"><img src="images/excel.png" style="width: 30px; height: 25px;"></a></li>
+                  <li class="page-item"><a class="page-link me-3" href="word.html"><img src="images/Microsoft_Word-Logo.wine.png" style="width: 30px; height: 25px;"></a></li>
+                 
+                </ul>
+              </nav>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                
+              <li class="nav-item ">
+                <a class="nav-link active" aria-current="page" href="#">TUR</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-wifi " style="color: #ffffff;"></i></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" aria-current="page" href="#"><i class="fa-sharp fa-regular fa-volume " style="color: #ffffff;"></i></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-battery-half " style="color: #ffffff;"></i></a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" aria-current="page" href="#">22.11.23</a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="#"><div class="Saat">
+                  <h6 id="saat"></h6>     
+              </div></a>
+              </li>
+             
+              <li class="nav-item me-3">
+                <a class="nav-link disabled" aria-disabled="true"> <i class="fa-regular fa-bell " style="color: #ffffff;"></i> </a>
+              </li>
+            </ul>
+           
+          </div>
+        </div>
+      </nav>
+
+      <div >
+        <ul class="nav flex-column">
+            <li class="nav-item m-3">
+              <a id="bil" class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivbilgisayar" aria-current="page" href="#"><i class="fa-solid fa-desktop fa-2xl" style="color: #ffffff;"></i></a>
+              <h6 class="text-white m-1">Bilgisayar</h6>
+            </li>
+            <li class="nav-item m-3">
+              <a id="bel" class="nav-link" data-bs-toggle="modal" data-bs-target="#modaldivbelgeler" aria-current="page"href="#"><i class="fa-regular fa-folder fa-2xl" style="color: #ffffff;"></i></a>
+              <h6 class="text-white m-1">Belgeler</h6>
+            </li>
+            <li class="nav-item m-3">
+              <a id="res" class="nav-link" data-bs-toggle="modal" data-bs-target="#modaldivresimler"aria-current="page" href="#"><i class="fa-regular fa-image fa-2xl" style="color: #ffffff;"></i></a>
+              <h6 class="text-white m-1">Resimler</h6>
+            </li>
+            <li class="nav-item m-3">
+              <a id="uyg" class="nav-link" data-bs-toggle="modal" data-bs-target="#modaldivuygulamalar" aria-current="page" href="#"><i class="fa-solid fa-folder-closed fa-2xl" style="color: #ffffff;"></i></a>
+              <h6 class="text-white m-1">Uygulamalar</h6>
+            </li>
+          </ul>
+      </div>
+    <!-- BİLGİSAYAR -->
+      <div class="modal fade" id="modaldivbilgisayar" tabindex="-1" role="dialog" aria-hidden="true" >
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content" style=" height:500px;">
+                <div class="modal-header">
+                    <h2>Bilgisayar</h2>
+                    <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <nav class="navbar bg-body-tertiary">
+                        <div class="container-fluid">
+                          <a class="navbar-brand" href="#">
+                            <img src="images/c.jpg" alt="Logo" width="70" height="70" class="d-inline-block align-text-top">
+                            OS(C:)
+                          </a>
+                        </div>
+                      </nav>
+                      <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar" style="width: 25%"></div><br>
+                      </div>
+                      <p>125 GB Boş, 500 GB Toplam</p>
+                </div>
+            </div>
+        </div>
+    </div>
+ <!-- BELGELER -->
+    <div class="modal fade" id="modaldivbelgeler" tabindex="-1" role="dialog" aria-hidden="true" >
+        <div class="modal-dialog" role="document" >
+            <div class="modal-content" style=" height:500px;">
+                <div class="modal-header">
+                    <h2>Belgeler</h2>
+                    <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="container text-center">
+                        <div class="row">
+                          <div class="col-sm">
+                                <a href="word.html"><img src="images/Microsoft_Word-Logo.wine.png" style="width: 100px; height: 60px;"></a>
+                                <h6 class="text-black m-0">Word</h6>
+                          </div>
+                          <div class="col-sm">
+                            <a href="powerpoint.html"><img src="images/PowerPoint.png" style="width: 100px; height: 60px;"></a>
+                            <h6 class="text-black m-0">PowerPoint</h6>
+                          </div>
+                          <div class="col-sm">
+                            <a href="excel.html"><img src="images/excel.png" style="width: 100px; height: 60px;"></a>
+                            <h6 class="text-black m-0">Excel</h6>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- RESİMLER -->
+<div class="modal fade" id="modaldivresimler" tabindex="-1" role="dialog" aria-hidden="true" >
+    <div class="modal-dialog" role="document" >
+        <div class="modal-content" style=" height:500px;">
+            <div class="modal-header">
+                <h2>Resimler</h2>
+                <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="container text-center">
+                <div class="row">
+                  <div class="col">
+                      <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivbir" aria-current="page" href="#"><img src="images/resim1.png"></a>
+                      <h6 class="text-black m-1">Resim-1</h6>
+                  </div>
+                  <div class="col">
+                    <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldiviki" aria-current="page" href="#"><img src="images/resim2.png"></a>
+                    <h6 class="text-black m-1">Resim-2</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivüç" aria-current="page" href="#"><img src="images/resim3.png"></a>
+                      <h6 class="text-black m-1">Resim-3</h6>
+                  </div>
+                  <div class="col">
+                    <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivdört" aria-current="page" href="#"><img src="images/resim4.png"></a>
+                      <h6 class="text-black m-1">Resim-4</h6>
+                  </div>
+                  <div class="col">
+                    <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivbeş" aria-current="page" href="#"><img src="images/resim5.png"></a>
+                      <h6 class="text-black m-1">Resim-5</h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- RESİM-1 -->
+
+<div class="modal fade" id="modaldivbir" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/dört.gif">
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- RESİM-2 -->
+<div class="modal fade" id="modaldiviki" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/iki.gif">
+          </div>
+      </div>
+  </div>
+</div>
+<!-- RESİM-3 -->
+<div class="modal fade" id="modaldivüç" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/on.gif">
+          </div>
+      </div>
+  </div>
+</div>
+<!-- RESİM-4 -->
+<div class="modal fade" id="modaldivdört" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/beş.gif">
+          </div>
+      </div>
+  </div>
+</div>
+<!-- RESİM-5 -->
+<div class="modal fade" id="modaldivbeş" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/üç.gif">
+          </div>
+      </div>
+  </div>
+</div>
+<!-- UYGULAMALAR -->
+
+<div class="modal fade" id="modaldivuygulamalar" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content" style=" height:500px;">
+          <div class="modal-header">
+              <h2>Uygulamalar</h2>
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="container text-center">
+              <div class="row">
+                <div class="col">
+                    <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivappbir" aria-current="page" href="#"><img src="images/github.png" style="width: 80px; height: 80px;"></a>
+                    <h6 class="text-black m-1">Github</h6>
+                </div>
+                <div class="col">
+                  <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivappiki" aria-current="page" href="#"><img src="images/discord.png" style="width: 80px; height: 80px;"></a>
+                  <h6 class="text-black m-1">Discord</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <a class="nav-link " data-bs-toggle="modal" data-bs-target="#modaldivappüç" aria-current="page" href="#"><img src="images/whatsapp.png" style="width: 80px; height: 80px;"></a>
+                    <h6 class="text-black m-1">WhatsApp</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaldivappbir" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/github_içerik.png">
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaldivappiki" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/discord.gif">
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modaldivappüç" tabindex="-1" role="dialog" aria-hidden="true" >
+  <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+          <div class="modal-header">
+              <button class="close btn btn-danger btn-sm" type="button" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+          </div>
+          <div >
+              <img src="images/wp.jpg">
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div id="overlay" class="overlay">
+  <div class="spinner-border text-danger" role="status" style="width: 300px; height: 300px;">
+    <span class="visually-hidden">Kapanıyor...</span>
+  </div>
+</div>
+</div>
+
+
+    <script>
+       function Dijital_saat() {
+    var sure = new Date;
+    document.getElementById('saat').innerHTML = say(sure.getHours()) + ":"
+    + say(sure.getMinutes()) + ":" 
+    + say(sure.getSeconds());
+    setInterval(Dijital_saat,1000);
+}
+
+function say(x) {
+    if (x<10){
+        x="0"+x;
+    }
+    return x;
+}
+
+Dijital_saat();
+
+function kapa() {
+      var overlay = document.getElementById("overlay");
+      overlay.style.display = "flex";
+        setTimeout(() => {
+          window.location.href="acilis.html";
+        }, 3000);
+    }
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>  </body>
+</html>
+
+
+   

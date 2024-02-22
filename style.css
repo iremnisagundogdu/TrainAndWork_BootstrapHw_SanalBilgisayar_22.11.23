@@ -1,0 +1,25 @@
+body{
+    background-image: url('images/bg.gif');
+    background-repeat: no-repeat;
+    background-color: black;
+    background-position: center;
+    background-position-y: top;
+}
+.icon{
+    position: relative;
+    display: inline-block;
+}
+
+.image{
+    width:1000px;
+    height:600px;
+  display: none;
+  position: absolute;
+  bottom:40px;
+}
+
+.icon:hover .image {
+    display: block;
+  }
+
+  
